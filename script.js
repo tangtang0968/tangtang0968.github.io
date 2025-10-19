@@ -100,8 +100,10 @@ function drawRadarChart() {
         svg.appendChild(line);
         
         // Add subject labels
-        const labelX = centerX + Math.cos(angle) * (maxRadius + 20);
-        const labelY = centerY + Math.sin(angle) * (maxRadius + 20);
+        const labelOffset = 35; // 【修改點 1】增加距離，從 20 改為 35
+        const labelX = centerX + Math.cos(angle) * (maxRadius + labelOffset);
+        const labelY = centerY + Math.sin(angle) * (maxRadius + labelOffset);
+        
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', labelX);
         text.setAttribute('y', labelY);
@@ -171,12 +173,14 @@ function drawRadarChart() {
             // Add score labels on points
             if (scores[index] > 0) {
                 const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', point.x);
-                text.setAttribute('y', point.y - 10);
+                
+                text.setAttribute('x', point.x); 
+                text.setAttribute('y', point.y - 15); // 【修改點 2】將分數數字往上移 15 像素（從 10 改為 15）
                 text.setAttribute('font-size', '12');
                 text.setAttribute('font-weight', 'bold');
                 text.setAttribute('fill', '#1f2937');
                 text.setAttribute('text-anchor', 'middle');
+                
                 text.textContent = scores[index].toString();
                 svg.appendChild(text);
             }
