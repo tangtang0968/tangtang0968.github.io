@@ -100,7 +100,7 @@ function drawRadarChart() {
         svg.appendChild(line);
         
         // Add subject labels
-        const labelOffset = 35; // 【修改點 1】增加距離，從 20 改為 35
+        const labelOffset = 35; // 幹你娘我他媽這個改超久一一四八月二四
         const labelX = centerX + Math.cos(angle) * (maxRadius + labelOffset);
         const labelY = centerY + Math.sin(angle) * (maxRadius + labelOffset);
         
