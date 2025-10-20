@@ -175,7 +175,7 @@ function drawRadarChart() {
                 const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 
                 text.setAttribute('x', point.x); 
-                text.setAttribute('y', point.y - 15); // 【修改點 2】將分數數字往上移 15 像素（從 10 改為 15）
+                text.setAttribute('y', point.y - 15); // 我下次不要再做這種奇怪的東西再做就是給
                 text.setAttribute('font-size', '12');
                 text.setAttribute('font-weight', 'bold');
                 text.setAttribute('fill', '#1f2937');
