@@ -1,127 +1,137 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>段考加權計算</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✏️</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>段考加權計算</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-926VRNL0JQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-926VRNL0JQ');
+    </script>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✏️</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-5xl">
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-2">段考加權計算</h1>
-        </div>
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">段考加權計算</h1>
+        </div>
 
-        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
-            <div class="mb-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="subjectsGrid">
-                </div>
-            </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-6">
+            <div class="mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="subjectsGrid">
+                </div>
+            </div>
 
-            <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">計算結果</h2>
-                
-                <div class="flex justify-center mb-6">
-                    <button onclick="quickClear()" 
-                            class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
-                        🗑️ 一鍵清除所有成績
-                    </button>
-                </div>
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">計算結果</h2>
+                
+                <div class="flex justify-center mb-6">
+                    <button onclick="quickClear()" 
+                            class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200">
+                        🗑️ 一鍵清除所有成績
+                    </button>
+                </div>
 
-                <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">成績雷達圖</h3>
-                    <div class="flex justify-center">
-                        <svg id="radarChart" width="400" height="400" viewBox="0 0 400 400" class="max-w-full h-auto">
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-blue-600" id="weightedAverage">--</div>
-                        <div class="text-sm text-gray-600 mt-2">加權平均</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-green-600" id="totalWeightedScore">--</div>
-                        <div class="text-sm text-gray-600 mt-2">總加權分數</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-orange-600" id="gradeLevel">--</div>
-                        <div class="text-sm text-gray-600 mt-2">等級</div>
-                    </div>
-                </div>
-                
-                <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3">計算公式</h3>
-                    <div class="text-sm text-gray-600 space-y-2">
-                        <div id="calculationFormula" class="font-mono bg-gray-50 p-3 rounded border">
-                            加權平均 = 總加權分數 ÷ 18
-                        </div>
-                        <div id="detailedCalculation" class="text-xs text-gray-500">
-                            請輸入各科成績以查看詳細計算過程
-                        </div>
-                    </div>
-                </div>
+                <div class="mb-8 bg-white rounded-xl p-6 border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">成績雷達圖</h3>
+                    <div class="flex justify-center">
+                        <svg id="radarChart" width="400" height="400" viewBox="0 0 400 400" class="max-w-full h-auto">
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-blue-600" id="weightedAverage">--</div>
+                        <div class="text-sm text-gray-600 mt-2">加權平均</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-600" id="totalWeightedScore">--</div>
+                        <div class="text-sm text-gray-600 mt-2">總加權分數</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-orange-600" id="gradeLevel">--</div>
+                        <div class="text-sm text-gray-600 mt-2">等級</div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">計算公式</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <div id="calculationFormula" class="font-mono bg-gray-50 p-3 rounded border">
+                            加權平均 = 總加權分數 ÷ 18
+                        </div>
+                        <div id="detailedCalculation" class="text-xs text-gray-500">
+                            請輸入各科成績以查看詳細計算過程
+                        </div>
+                    </div>
+                </div>
 
-                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-3"> 等級標準</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
-                        <div class="bg-purple-100 p-2 rounded text-center">
-                            <div class="font-bold text-purple-800">A++</div>
-                            <div class="text-purple-600">93-100</div>
-                        </div>
-                        <div class="bg-green-100 p-2 rounded text-center">
-                            <div class="font-bold text-green-800">A+</div>
-                            <div class="text-green-600">85-92</div>
-                        </div>
-                        <div class="bg-blue-100 p-2 rounded text-center">
-                            <div class="font-bold text-blue-800">A</div>
-                            <div class="text-blue-600">80-84</div>
-                        </div>
-                        <div class="bg-indigo-100 p-2 rounded text-center">
-                            <div class="font-bold text-indigo-800">B++</div>
-                            <div class="text-indigo-600">75-79</div>
-                        </div>
-                        <div class="bg-cyan-100 p-2 rounded text-center">
-                            <div class="font-bold text-cyan-800">B+</div>
-                            <div class="text-cyan-600">70-74</div>
-                        </div>
-                        <div class="bg-yellow-100 p-2 rounded text-center">
-                            <div class="font-bold text-yellow-800">B</div>
-                            <div class="text-yellow-600">60-69</div>
-                        </div>
-                        <div class="bg-red-100 p-2 rounded text-center">
-                            <div class="font-bold text-red-800">C</div>
-                            <div class="text-red-600">60以下</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3"> 等級標準</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                        <div class="bg-purple-100 p-2 rounded text-center">
+                            <div class="font-bold text-purple-800">A++</div>
+                            <div class="text-purple-600">93-100</div>
+                        </div>
+                        <div class="bg-green-100 p-2 rounded text-center">
+                            <div class="font-bold text-green-800">A+</div>
+                            <div class="text-green-600">85-92</div>
+                        </div>
+                        <div class="bg-blue-100 p-2 rounded text-center">
+                            <div class="font-bold text-blue-800">A</div>
+                            <div class="text-blue-600">80-84</div>
+                        </div>
+                        <div class="bg-indigo-100 p-2 rounded text-center">
+                            <div class="font-bold text-indigo-800">B++</div>
+                            <div class="text-indigo-600">75-79</div>
+                        </div>
+                        <div class="bg-cyan-100 p-2 rounded text-center">
+                            <div class="font-bold text-cyan-800">B+</div>
+                            <div class="text-cyan-600">70-74</div>
+                        </div>
+                        <div class="bg-yellow-100 p-2 rounded text-center">
+                            <div class="font-bold text-yellow-800">B</div>
+                            <div class="text-yellow-600">60-69</div>
+                        </div>
+                        <div class="bg-red-100 p-2 rounded text-center">
+                            <div class="font-bold text-red-800">C</div>
+                            <div class="text-red-600">60以下</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="bg-white rounded-2xl shadow-xl p-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6"> 歷史紀錄</h2>
-            <div id="historyContainer" class="space-y-3 mb-6">
-            </div>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <button type="button" 
-                        class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 cursor-pointer"
-                        onclick="clearHistory()">
-                    🗑️ 清除所有歷史
-                </button>
-                <button type="button" id="deleteSelectedBtn"
-                        class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 cursor-pointer hidden"
-                        onclick="deleteSelectedHistory()">
-                    🗑️ 刪除已勾選紀錄
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="text-center text-gray-500 text-sm py-4">
-        周敬棠製作
-    </div>
-    <script src="script.js"></script>
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6"> 歷史紀錄</h2>
+            <div id="historyContainer" class="space-y-3 mb-6">
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button type="button" 
+                        class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 cursor-pointer"
+                        onclick="clearHistory()">
+                    🗑️ 清除所有歷史
+                </button>
+                <button type="button" id="deleteSelectedBtn"
+                        class="bg-red-500 hover:bg-red-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 cursor-pointer hidden"
+                        onclick="deleteSelectedHistory()">
+                    🗑️ 刪除已勾選紀錄
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="text-center text-gray-500 text-sm py-4">
+        周敬棠製作
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
